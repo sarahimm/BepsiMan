@@ -1,0 +1,179 @@
+html, body {
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+}
+body{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    background-image: url(../img/noun-soda-1368938.svg); /*background image*/
+    background-color:rgb(218, 58, 170);
+    background-size: 150px;
+    background-repeat: repeat;
+    background-position: center center; 
+    /*backdrop-filter: invert(39%) sepia(92%) saturate(6497%) hue-rotate(309deg) brightness(83%) contrast(90%);  */
+}
+ .Title {
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      text-align: center;
+      width:600px;
+      max-width: 100vw;
+      height: 500px;
+      margin: auto;
+      margin-top: calc(50vh - 275px);
+      padding: 0 60px;
+      background-color: rgb(0, 82, 114);
+      color: #ccc;
+  }
+
+  hr {
+      color: #fff;
+      width: 100%;
+  }
+  h1 {
+      font-family: 'Yellowtail', cursive;
+      font-size: 70px;
+      font-weight:300;
+      margin: 0;
+      padding: 0;
+      color: #fff;
+  }
+  h1 span {
+      text-shadow: 1px 2px 0px rgb(218, 58, 170);
+  }
+  h2 {
+      color: white;
+  }
+  p a, li a{
+      color:rgb(218, 58, 170);
+  }
+  #begin {
+      display: block;
+      box-sizing: border-box;
+      height: 150px;
+      width: 150px;
+      font-size: 30px;
+      font-weight: bold;
+      text-decoration: none;
+      text-transform: uppercase;
+      color: rgb(218, 58, 170);
+      text-shadow: 1px 1px #fff;
+      padding: 0;
+      padding-top: 50px;
+      margin: 0 auto;
+      text-align: center;
+      background-image: url("../img/noun-soda-1368938.svg");
+      background-size:contain;
+      background-position: center;
+      background-repeat:no-repeat;
+    }
+  #begin:hover {
+      animation: shake .25s linear 1;
+  }
+  @keyframes shake {
+      0% {transform: rotate(0)}
+      25% {transform: rotate(30deg)}
+      75% {transform: rotate(-30deg)}
+      100% {transform: rotate(0)}
+  }
+  nav .btn {
+      display: inline-block;
+      background-color: #fff;
+      color: #222;
+      text-decoration:none;
+      text-transform: uppercase;
+      padding: 20px;
+      width: 150px;
+      text-align: center;
+  }
+  nav .btn:hover {
+    background-image: url("../img/birds-gb3206260c_1280.png"); /*background image*/
+    background-size: cover;
+    text-shadow: 1px 1px 0px #fff;
+    box-shadow: inset 2px 3px 6px rgba(0, 101, 114, .5);
+  }
+  nav .btn.curPage {
+      background-color:rgb(0, 82, 114);
+      background-image: url("../img/birds-gb3206260c_1280.png"); /*background image*/
+      background-size: cover;
+      color: #fff;
+      box-shadow: none;
+      text-shadow: none;
+  }
+  nav {
+      background-color: #fff;
+      position: fixed;
+      display: flex;
+      justify-content: space-around;
+      bottom: 0;
+      width: 100%;
+      margin: 0;
+  }
+
+  .Page {
+      display: block;
+      margin: 60px auto;
+      padding: 30px;
+      background-color:rgb(0, 82, 114);
+      width: 90vw;
+      max-width: 900px;
+  }
+  .Page::after {
+      display: block;
+      content: "";
+      min-height: 120px;
+  }
+  .photos {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content:space-around;
+  }
+  .photos img {
+      margin: 30px;
+      max-height: 360px;
+      max-width: 600px;
+  }
+
+@media screen and (max-width: 480px) {
+    .Title {
+        padding: 0 4%;
+        min-height: 501px;
+        height:max-content;
+    }
+    nav {
+        flex-wrap: wrap;
+    }
+    nav .btn {
+        flex-grow: 1;
+        padding: 15px;
+    }
+}
+
+#background{
+    position: absolute;
+    width: 3000px;
+    height: 540px;
+    margin: auto;
+    background-image: 
+    url(../img/BackgroundLayer.png);
+}
+#midground{
+    position: absolute;
+    width: 3000px;
+    height: 540px;
+    margin: auto;
+    background-image: 
+    url(../img/MiddleLayer.png);
+}
+#foreground{
+    position: absolute;
+    width: 3000px;
+    height: 540px;
+    margin: auto;
+    background-image: 
+    url(../img/FrontLayer.png);
+}

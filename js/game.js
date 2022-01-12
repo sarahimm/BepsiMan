@@ -25,23 +25,25 @@
   
     // Callback function to move the background 
     function draw() {
-      // request another animation frame
-      requestAnimFrame(draw,25);
-      // reset position to 0 once the image has scrolled far enough
-      if ( position < -$background.width() ) {
-          position = 0;
-      }
-      // Set actual background position 
-      $('#background').css('background-position',position );
-      $('#midground').css('mid-position',position );
-      $('#frontBackground').css('front-position',position );
+        // request another animation frame
+        requestAnimFrame(draw,25);
+        // reset position to 0 once the image has scrolled far enough
+        if ( position < -$background.width() ) {
+            position = 0;
+        }
+        // Set actual background position 
+            $('#background').css('background-position',position[0]*1/2);
+        $('#midground').css('background-position',position[1]*1);
+        $('#foreground').css('background-position',position[2]*2);
 
-      
-      // Update the background position by the speed
-      position = position - speed;
+        // Update the background position by the speed
+        position[0] = position[0] - speed;
+        position[1] = position[1] - speed;
+        position[2] = position[2] - speed;
     }
     // Start the animation
     draw();
     
-  })(jQuery);
+})(jQuery);
   
+ 

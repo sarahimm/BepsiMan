@@ -160,6 +160,7 @@ body{
     margin: auto;
     background-image: 
     url(../img/BackgroundLayer.png);
+    z-index: -3;
 }
 #midground{
     position: absolute;
@@ -168,6 +169,7 @@ body{
     margin: auto;
     background-image: 
     url(../img/MiddleLayer.png);
+    z-index: -2;
 }
 #foreground{
     position: absolute;
@@ -176,4 +178,21 @@ body{
     margin: auto;
     background-image: 
     url(../img/FrontLayer.png);
+    z-index: -1;
+}
+div#bepsiMan {
+    position: absolute;
+    width:300px;
+    height:300px;
+    top: 220px;
+    margin:auto;
+    z-index: 0;
+}
+
+#aboveGame{
+    display: flex;
+    height: 45px;
+    left: 300px;
+    
+    width: 100%;
 }

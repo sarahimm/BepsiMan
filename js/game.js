@@ -1,5 +1,5 @@
 (function($){
-    var position = 0;
+    var position = [0,0,0];
     var speed = 6;
 
     var $background = $("#background");
@@ -19,18 +19,19 @@
 
     function draw(){
         requestAnimFrame(draw,25);
-        if (position < -$background.width() ) {
-            position = 0;
+        //the slowest background is the loast to loop, so it doesn't need to refresh until the back refreshes
+        if (position[2] < -$background.width() ) {
+            position[2] = 0;
         }
 
-        $('#background').css('background-position',position*1/12);
-        $('#midground').css('background-position',position*1/6);
-        $('#foreground').css('background-position',position*1/3);
-        position = position - speed;
+        $('#background').css('background-position',position[0]*1/2);
+        $('#midground').css('background-position',position[1]*1);
+        $('#foreground').css('background-position',position[2]*2);
+        position[0] = position[0] - speed;
+        position[1] = position[1] - speed;
+        position[2] = position[2] - speed;
 
-        if ( position* (1.0/12.0) < -$background.width() ) {
-            position = 0;
-            }
+       
     }
     draw();
 })(jQuery);

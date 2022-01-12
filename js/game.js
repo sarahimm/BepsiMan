@@ -7,7 +7,9 @@
     var speed = 6;      
     
     // Use jQuery to get the background element
-    var $background = $("#CoyoteBackground");  
+    var $background = $("#background"); 
+    var $background = $("#midground"); 
+    var $background = $("#frontground");  
     
     // IFFY function to figure out best animation function and store it
     var requestAnimFrame = ( function() {
@@ -30,7 +32,10 @@
           position = 0;
       }
       // Set actual background position 
-      $('#CoyoteBackground').css('background-position',position );
+      $('#background').css('background-position',position );
+      $('#midground').css('mid-position',position );
+      $('#frontBackground').css('front-position',position );
+
       
       // Update the background position by the speed
       position = position - speed;

@@ -173,3 +173,48 @@ div#foreground {
         padding: 15px;
     }
 }
+
+div#DesertBackground_back {
+  position: absolute;
+  width:3000px;
+  height:540px;
+  margin:auto;
+  background-image: url(../img/DesertBackground_back.png);
+  z-index: -5;
+}
+
+div#background {
+  position: absolute;
+  width:3000px;
+  height:540px;
+  margin:auto;
+  background-image: url(../img/BackgroundLayer.png);
+  z-index: -4;
+}
+
+div#midground {
+   position: absolute;
+   width:3000px;
+   height:540px;
+   margin:auto;
+   background-image: url(../img/MiddleLayer.png);
+   z-index: -3;
+}
+
+div#foreground {
+   position: absolute;
+   width:3000px;
+   height:540px;
+   margin:auto;
+   background-image: url(../img/FrontLayer.png);
+   z-index: -1;
+}
+
+div#BepsiMan {
+  position: absolute;
+  width:300px;
+  height:300px;
+  margin:auto;
+  content: url(../img/bepsiMan.png);
+  z-index: 0;
+}

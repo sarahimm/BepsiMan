@@ -3,26 +3,9 @@ class Game {
     //Initializes background images and starting velocity. 
     //Calls start() when all the images have loaded.
     constructor(){
-        this.Urls = ["img/BackgroundLayer.png","img/MiddleLayer.png","img/FrontLayer.png","img/can.png"];
-        //Array of 3 Image objects
-        this.backgrounds = [];
-        let loadedCount=0;
-        for(let i=0; i<3; i++){
-            let $img = new Image();
-            $img.onload = function(){
-                loadedCount++;
-                //Only starts game if all four necessary images have loaded
-                if(loadedCount===4) start();};
-            $img.src = this.Urls[i];
-            this.backgrounds.push($img);
-        }
-        //Set this.canIcon to an Image object
-        this.canIcon = new Image();
-        this.canIcon.onload = function(){
-            loadedCount++;
-            //Only starts game if all four necessary images have loaded
-            if(loadedCount===4) start();};
-        this.canIcon.src = this.Urls[3];
+        this.Urls = ["img/BackgroundLayer.png","img/MiddleLayer.png","img/FrontLayer.png","img/can.png","img/frame1.png","img/frame2.png","img/frame3.png","img/frame4.png","img/frame5.png","img/frame6.png","img/frame7.png"];
+        let urlNum=11;
+        
         //Position (px) for lefthand side of background images, relative to canvas
         this.backPos = [0,0,0];
         //Base velocity (back layer)
@@ -32,6 +15,42 @@ class Game {
         this.canvas.width = window.innerWidth;
         this.canvas.height = 550;
         this.context =  this.canvas.getContext("2d");
+
+        //Load Background Images
+        this.backgrounds = [];
+        let loadedCount=0;
+        for(let i=0; i<3; i++){
+            let $img = new Image();
+            $img.onload = function(){
+                loadedCount++;
+                //Only starts game if all necessary images have loaded
+                if(loadedCount===urlNum) start();};
+            $img.src = this.Urls[i];
+            this.backgrounds.push($img);
+        }
+
+        //Construct BepsiMan and load his animation images to the object
+        this.bepsiMan = new BepsiMan((this.canvas.width * .5 - 100),this.canvas.height - 250);
+        this.runAnim = [];
+        for(let i=4; i<11; i++){
+            let $img = new Image();
+            $img.onload = function(){
+                loadedCount++;
+                //Only starts game if all necessary images have loaded
+                if(loadedCount===urlNum) start();};
+            $img.src = this.Urls[i];
+            this.bepsiMan.runAnim.push($img);
+        }
+
+        //Load the can image
+        this.canIcon = new Image();
+        this.canIcon.onload = function(){
+            loadedCount++;
+            //Only starts game if all four necessary images have loaded
+            if(loadedCount===urlNum) start();};
+        this.canIcon.src = this.Urls[3];
+
+        
         //Probability (0 to 1) that a can will appear in a given frame
         this.canProb = .05;
         this.cans = [];
@@ -46,6 +65,14 @@ class Game {
             //Draws each background layer twice, side by side, to simulate infinite scroll
             this.context.drawImage(this.backgrounds[i],this.backPos[i],0,3000,this.canvas.height);
             this.context.drawImage(this.backgrounds[i], 3000 + this.backPos[i],0,3000,this.canvas.height)
+        }
+        //Draw BepsiMan if NOT jumping
+        if(!this.bepsiMan.inAir){
+            //Draw next frame of running animation
+            if(this.bepsiMan.curFrame >= this.bepsiMan.runAnim.length)
+                this.bepsiMan.curFrame = 0;
+            this.context.drawImage(this.bepsiMan.runAnim[this.bepsiMan.curFrame],this.bepsiMan.xPos,this.bepsiMan.yPos, this.bepsiMan.width, this.bepsiMan.height);
+            this.bepsiMan.curFrame++;  
         }
         for (let can of this.cans) {
             this.context.drawImage(this.canIcon,can.xPos,can.yPos, can.width, can.height);

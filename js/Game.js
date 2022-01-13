@@ -3,8 +3,8 @@ class Game {
     //Initializes background images and starting velocity. 
     //Calls start() when all the images have loaded.
     constructor(){
-        this.Urls = ["img/BackgroundLayer.png","img/MiddleLayer.png","img/FrontLayer.png","img/can.png","img/frame1.png","img/frame2.png","img/frame3.png","img/frame4.png","img/frame5.png","img/frame6.png","img/frame7.png"];
-        let urlNum=11;
+        this.Urls = ["img/BackgroundLayer.png","img/MiddleLayer.png","img/FrontLayer.png","img/can.png","img/frame1.png","img/frame2.png","img/frame3.png","img/frame4.png","img/frame5.png","img/frame6.png","img/frame7.png","img/beginJumpF1.png","img/beginJumpF2.png","img/inAir1.png","img/inAir2.png","img/inAir3.png"];
+        let urlNum=16;
         
         //Position (px) for lefthand side of background images, relative to canvas
         this.backPos = [0,0,0];
@@ -15,6 +15,10 @@ class Game {
         this.canvas.width = window.innerWidth;
         this.canvas.height = 550;
         this.context =  this.canvas.getContext("2d");
+
+        this.timer = 600;
+
+        
 
         //Load Background Images
         this.backgrounds = [];
@@ -30,8 +34,7 @@ class Game {
         }
 
         //Construct BepsiMan and load his animation images to the object
-        this.bepsiMan = new BepsiMan((this.canvas.width * .5 - 100),this.canvas.height - 250);
-        this.runAnim = [];
+        this.bepsiMan = new BepsiMan((this.canvas.width * .5 - 100),this.canvas.height - 230);
         for(let i=4; i<11; i++){
             let $img = new Image();
             $img.onload = function(){
@@ -40,6 +43,15 @@ class Game {
                 if(loadedCount===urlNum) start();};
             $img.src = this.Urls[i];
             this.bepsiMan.runAnim.push($img);
+        }
+        for(let i=11; i<16; i++){
+            let $img = new Image();
+            $img.onload = function(){
+                loadedCount++;
+                //Only starts game if all necessary images have loaded
+                if(loadedCount===urlNum) start();};
+            $img.src = this.Urls[i];
+            this.bepsiMan.jumpAnim.push($img);
         }
 
         //Load the can image
@@ -52,7 +64,7 @@ class Game {
 
         
         //Probability (0 to 1) that a can will appear in a given frame
-        this.canProb = .05;
+        this.canProb = .04;
         this.cans = [];
         this.cans.push(new Can(this.canvas.width,canvas.height - 80));
     }
@@ -73,6 +85,12 @@ class Game {
                 this.bepsiMan.curFrame = 0;
             this.context.drawImage(this.bepsiMan.runAnim[this.bepsiMan.curFrame],this.bepsiMan.xPos,this.bepsiMan.yPos, this.bepsiMan.width, this.bepsiMan.height);
             this.bepsiMan.curFrame++;  
+        }else{
+            //Draw BepsiMan if jumping (start with transition frames jumpAnim[0],jumpAnim[1], then cycle through jumpAnim[2-4])
+            if(this.bepsiMan.curFrame >= this.bepsiMan.jumpAnim.length)
+                this.bepsiMan.curFrame = 2;
+            this.context.drawImage(this.bepsiMan.jumpAnim[this.bepsiMan.curFrame],this.bepsiMan.xPos,this.bepsiMan.yPos, this.bepsiMan.width, this.bepsiMan.height);
+            this.bepsiMan.curFrame++;
         }
         for (let can of this.cans) {
             this.context.drawImage(this.canIcon,can.xPos,can.yPos, can.width, can.height);
@@ -96,10 +114,20 @@ class Game {
             if(this.cans[i].xPos<=0)
                 this.cans.splice(i, 1);
         }
+        //If bepsiMan is jumping, update his yPos
+        if(this.bepsiMan.inAir)
+            this.bepsiMan.updateHeight();
+
+        //Add new cans at random
         if(Math.random() <= this.canProb){
-            this.cans.push(new Can(this.canvas.width, Math.floor(Math.random() * (this.canvas.height - 80))));
+            this.cans.push(new Can(this.canvas.width, Math.floor(Math.random() * (this.canvas.height - 110))));
         }
         this.draw();
+
+        --this.timer;
+        if(this.timer < 0){
+            gameOver();
+        }
     }
 
     checkCollide() {
@@ -122,6 +150,13 @@ var game = new Game();
 
 var start = function () {
     game.draw();
-    setInterval(game.update.bind(game), 20);
+    control = setInterval(game.update.bind(game),20);
+}
+
+var gameOver = function(){
+    //cancel control//
+    //
+    clearInterval(control);
+    game.context.fillRect(0,0,game.canvas.width,game.canvas.height);
 }
 

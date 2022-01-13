@@ -109,3 +109,25 @@ var start = function () {
     game.draw();
     setInterval(game.update.bind(game), 20);
 }
+
+Game.init(200, 200);
+
+var dim1 = {x: 5, y: 5, w: 50, h: 50}
+var dim2 = {x: 20, y: 10, w: 60, h: 40}
+
+var bepsi = Game.e("2D, Canvas, Color").attr(bepsi).color("red");
+
+var can = Game.e("2D, Canvas, Color, Keyboard, Fourway").fourway(2).attr(can).color("blue");
+
+can.bind("EnterFrame", function () {
+    if (bepsi.x < can.x + can.w &&
+        bepsi.x + bepsi.w > can.x &&
+        bepsi.y < can.y + can.h &&
+        bepsi.h + bepsi.y > can.y) {
+        // collision detected!
+        this.BepsiMan(" ");
+    } else {
+        // no collision
+        this.cans(" ");
+    }
+});

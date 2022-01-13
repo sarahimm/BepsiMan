@@ -10,19 +10,19 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Yellowtail&display=swap" rel="stylesheet">    </head>
     <body>
-        <h1 id= "aboveGame"></h1>
-        <div id="background"></div>
-        <div id="midground"></div>
-        <div id="foreground"></div>
-        <div id="bepsiMan"></div>
-        
+        <div class="page">
+           <canvas id="canvas">
+
+           </canvas>
+        </div>
         <nav class="mainNav">
-            <a class="btn" href="index.html" >Home</a>
+            <a class="btn curPage" href="index.html">Home</a>
             <a class="btn" href="design.html">Design Concept</a>
             <a class="btn" href="resources.html">Resources</a>
             <a class="btn" href="artwork.html">Artwork</a>
         </nav>
-        <script src=" https://code.jquery.com/jquery-3.6.0.js"></script>
-        <script src="js/scrollingBackground.js" defer></script>
+        <script src="js/jquery-1.11.1.js"></script>
+        <script src="js/CoyoteUtilities.js"></script>
+        <script src="js/Game.js"></script>
     </body>
 </html>

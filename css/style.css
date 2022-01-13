@@ -91,14 +91,12 @@ body{
       text-align: center;
   }
   nav .btn:hover {
-    background-image: url("../img/birds-gb3206260c_1280.png"); /*background image*/
     background-size: cover;
     text-shadow: 1px 1px 0px #fff;
     box-shadow: inset 2px 3px 6px rgba(0, 101, 114, .5);
   }
   nav .btn.curPage {
       background-color:rgb(0, 82, 114);
-      background-image: url("../img/birds-gb3206260c_1280.png"); /*background image*/
       background-size: cover;
       color: #fff;
       box-shadow: none;
@@ -138,6 +136,11 @@ body{
       max-width: 600px;
   }
 
+  canvas {
+      height: 540px;
+      max-width: 1200px;
+  }
+
 @media screen and (max-width: 480px) {
     .Title {
         padding: 0 4%;
@@ -151,48 +154,4 @@ body{
         flex-grow: 1;
         padding: 15px;
     }
-}
-
-#background{
-    position: absolute;
-    width: 3000px;
-    height: 540px;
-    margin: auto;
-    background-image: 
-    url(../img/BackgroundLayer.png);
-    z-index: -3;
-}
-#midground{
-    position: absolute;
-    width: 3000px;
-    height: 540px;
-    margin: auto;
-    background-image: 
-    url(../img/MiddleLayer.png);
-    z-index: -2;
-}
-#foreground{
-    position: absolute;
-    width: 3000px;
-    height: 540px;
-    margin: auto;
-    background-image: 
-    url(../img/FrontLayer.png);
-    z-index: -1;
-}
-div#bepsiMan {
-    position: absolute;
-    width:300px;
-    height:300px;
-    top: 220px;
-    margin:auto;
-    z-index: 0;
-}
-
-#aboveGame{
-    display: flex;
-    height: 45px;
-    left: 300px;
-    
-    width: 100%;
 }

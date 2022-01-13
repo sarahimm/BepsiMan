@@ -1,4 +1,3 @@
-
 class Game {
     //Initializes background images and starting velocity. 
     //Calls start() when all the images have loaded.
@@ -15,6 +14,11 @@ class Game {
         this.canvas.width = window.innerWidth;
         this.canvas.height = 550;
         this.context =  this.canvas.getContext("2d");
+
+        this.startvalue = 125
+        this.timer = this.startvalue;
+
+        
 
         //Load Background Images
         this.backgrounds = [];
@@ -91,6 +95,16 @@ class Game {
         for (let can of this.cans) {
             this.context.drawImage(this.canIcon,can.xPos,can.yPos, can.width, can.height);
         }
+        //bar that is running out
+        this.context.fillRect(0,this.canvas.height - 12,this.canvas.width*this.timer/this.startvalue,12);
+        
+        if(this.timer>this.startvalue*2/5){
+            this.context.fillStyle = "#55FF00";
+        } else if(this.timer > this.startvalue*1/5){
+            this.context.fillStyle = "#FFFF00";
+        } else{
+            this.context.fillStyle = "#FF5533";
+        }
 
     }
     //Adjusts positioning of each element according to velocity
@@ -121,6 +135,26 @@ class Game {
         }
         this.checkCollide();
         this.draw();
+
+        --this.timer;
+        if(this.timer < 0){
+            gameOver();
+        }
+    }
+
+    //checks if BepsiMan and cans collide
+    checkCollide() {
+        for(var can of this.cans){
+          if (this.bepsiMan.xPos < can.xPos + can.width &&
+              this.bepsiMan.xPos + this.bepsiMan.width > can.xPos &&
+              this.bepsiMan.yPos < can.yPos + can.height &&
+              this.bepsiMan.height + this.bepsiMan.yPos > can.yPos) {
+              // collision detected!
+              console.log("Collision detected")
+          } else {
+              // no collision
+          }
+        }
     }
     checkCollide() {
         for(var can of this.cans){
@@ -145,10 +179,17 @@ var game = new Game();
 
 var start = function () {
     game.draw();
-    control = setInterval(game.update.bind(game), 20);
+    control = setInterval(game.update.bind(game),20);
 }
 
-var gameover = function() {
+var gameOver = function(){
     //cancel control
-    game.context.fillRect(0,0,game.canvas.width,game.canvas.height)
+    //blackens screen
+    clearInterval(control);
+    game.context.fillStyle = "black";
+    game.context.fillRect(0,0,game.canvas.width,game.canvas.height);
+    game.context.font = 'bold 48px serif';
+    game.context.strokeStyle = 'rgb(218, 58, 170)';
+    game.context.strokeText('RAN OUT OF BEPSI',this.canvas.width/3+20,this.canvas.height/2);
 }
+

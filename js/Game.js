@@ -101,6 +101,20 @@ class Game {
         }
         this.draw();
     }
+
+    checkCollide() {
+        for(var can of this.cans){
+          if (this.bepsiMan.xPos < can.xPos + can.width &&
+              this.bepsiMan.xPos + this.bepsiMan.width > can.xPos &&
+              this.bepsiMan.yPos < can.yPos + can.height &&
+              this.bepsiMan.height + this.bepsiMan.yPos > can.yPos) {
+              // collision detected!
+              console.log("Collision detected")
+          } else {
+              // no collision
+          }
+        }
+    }
 }
 
 
@@ -110,3 +124,4 @@ var start = function () {
     game.draw();
     setInterval(game.update.bind(game), 20);
 }
+

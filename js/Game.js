@@ -91,6 +91,7 @@ class Game {
         for (let can of this.cans) {
             this.context.drawImage(this.canIcon,can.xPos,can.yPos, can.width, can.height);
         }
+
     }
     //Adjusts positioning of each element according to velocity
     //(Eventually will check for and handle collisions as well)
@@ -118,7 +119,24 @@ class Game {
         if(Math.random() <= this.canProb){
             this.cans.push(new Can(this.canvas.width, Math.floor(Math.random() * (this.canvas.height - 110))));
         }
+        this.checkCollide();
         this.draw();
+    }
+    checkCollide() {
+        for(var can of this.cans){
+          if (this.bepsiMan.xPos < can.xPos + can.width &&
+              this.bepsiMan.xPos + this.bepsiMan.width > can.xPos &&
+              this.bepsiMan.yPos < can.yPos + can.height &&
+              this.bepsiMan.height + this.bepsiMan.yPos > can.yPos) {
+              // collision detected!
+              console.log("Collision detected")
+             /* if(this.timer < this.time){
+                this.timer += this.increment; 
+              }*/
+          } else {
+              // no collision
+          }
+        }
     }
 }
 
@@ -127,5 +145,10 @@ var game = new Game();
 
 var start = function () {
     game.draw();
-    setInterval(game.update.bind(game), 20);
+    control = setInterval(game.update.bind(game), 20);
+}
+
+var gameover = function() {
+    //cancel control
+    game.context.fillRect(0,0,game.canvas.width,game.canvas.height)
 }

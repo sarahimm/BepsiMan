@@ -3,19 +3,26 @@ class Game {
     //Initializes background images and starting velocity. 
     //Calls start() when all the images have loaded.
     constructor(){
-        this.backgroundUrls = ["img/BackgroundLayer.png","img/MiddleLayer.png","img/FrontLayer.png"];
+        this.Urls = ["img/BackgroundLayer.png","img/MiddleLayer.png","img/FrontLayer.png","img/can.png"];
         //Array of 3 Image objects
         this.backgrounds = [];
         let loadedCount=0;
-        for(let url of this.backgroundUrls){
+        for(let i=0; i<3; i++){
             let $img = new Image();
             $img.onload = function(){
                 loadedCount++;
-                //Only starts game if all three background images have loaded
-                if(loadedCount===3) start();};
-            $img.src = url;
+                //Only starts game if all four necessary images have loaded
+                if(loadedCount===4) start();};
+            $img.src = this.Urls[i];
             this.backgrounds.push($img);
         }
+        //Set this.canIcon to an Image object
+        this.canIcon = new Image();
+        this.canIcon.onload = function(){
+            loadedCount++;
+            //Only starts game if all four necessary images have loaded
+            if(loadedCount===4) start();};
+        this.canIcon.src = this.Urls[3];
         //Position (px) for lefthand side of background images, relative to canvas
         this.backPos = [0,0,0];
         //Base velocity (back layer)
@@ -25,6 +32,8 @@ class Game {
         this.canvas.width = window.innerWidth;
         this.canvas.height = 550;
         this.context =  this.canvas.getContext("2d");
+        this.cans = [];
+        this.cans.push(new Can(this.canvas.width,canvas.height - 80));
     }
     //Draws background, character, and all other game objects to the screen
     //(Just background for now)
@@ -35,6 +44,9 @@ class Game {
             //Draws each background layer twice, side by side, to simulate infinite scroll
             this.context.drawImage(this.backgrounds[i],this.backPos[i],0,3000,this.canvas.height);
             this.context.drawImage(this.backgrounds[i], 3000 + this.backPos[i],0,3000,this.canvas.height)
+        }
+        for (let can of this.cans) {
+            this.context.drawImage(this.canIcon,can.xPos,can.yPos, can.width, can.height);
         }
     }
     //Adjusts positioning of each element according to velocity
@@ -47,6 +59,9 @@ class Game {
             //Loop background for infinite scroll
             if(this.backPos[i] <= -3000)
                 this.backPos[i] = 0;
+        }
+        for (let can of this.cans) {
+            can.xPos -= this.velocity * 3;
         }
         this.draw();
     }

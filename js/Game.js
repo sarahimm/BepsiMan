@@ -1,4 +1,3 @@
-
 class Game {
     //Initializes background images and starting velocity. 
     //Calls start() when all the images have loaded.
@@ -16,7 +15,8 @@ class Game {
         this.canvas.height = 550;
         this.context =  this.canvas.getContext("2d");
 
-        this.timer = 60;
+        this.startvalue = 125
+        this.timer = this.startvalue;
 
         
 
@@ -95,6 +95,17 @@ class Game {
         for (let can of this.cans) {
             this.context.drawImage(this.canIcon,can.xPos,can.yPos, can.width, can.height);
         }
+        //bar that is running out
+        this.context.fillRect(0,this.canvas.height - 12,this.canvas.width*this.timer/this.startvalue,12);
+        
+        if(this.timer>this.startvalue*2/5){
+            this.context.fillStyle = "#55FF00";
+        } else if(this.timer > this.startvalue*1/5){
+            this.context.fillStyle = "#FFFF00";
+        } else{
+            this.context.fillStyle = "#FF5533";
+        }
+
     }
     //Adjusts positioning of each element according to velocity
     //(Eventually will check for and handle collisions as well)
@@ -158,9 +169,10 @@ var gameOver = function(){
     //cancel control
     //blackens screen
     clearInterval(control);
+    game.context.fillStyle = "black";
     game.context.fillRect(0,0,game.canvas.width,game.canvas.height);
     game.context.font = 'bold 48px serif';
     game.context.strokeStyle = 'rgb(218, 58, 170)';
-    game.context.strokeText('RAN OUT OF BEPSI',this.canvas.width/3,this.canvas.height/2);
+    game.context.strokeText('RAN OUT OF BEPSI',this.canvas.width/3+20,this.canvas.height/2);
 }
 

@@ -64,7 +64,7 @@ class Game {
 
         
         //Probability (0 to 1) that a can will appear in a given frame
-        this.canProb = .03;
+        this.canProb = .045;
         this.cans = [];
         this.cans.push(new Can(this.canvas.width,canvas.height - 80));
     }
@@ -132,7 +132,7 @@ class Game {
             this.bepsiMan.updateHeight();
 
         //Add new cans at random
-        if(Math.random() <= this.canProb){
+        if(this.cans.length === 0 || (Math.random() <= this.canProb)){
             this.cans.push(new Can(this.canvas.width, Math.floor(Math.random() * (this.canvas.height - 110))));
         }
         this.checkCollide();
@@ -147,19 +147,19 @@ class Game {
     //checks if BepsiMan and cans collide
     checkCollide() {
         for(var i=0; i<this.cans.length; i++){
-          if (this.bepsiMan.xPos < this.cans[i].xPos + this.cans[i].width &&
-              this.bepsiMan.xPos + this.bepsiMan.width > this.cans[i].xPos &&
-              this.bepsiMan.yPos < this.cans[i].yPos + this.cans[i].height &&
-              this.bepsiMan.height + this.bepsiMan.yPos > this.cans[i].yPos) {
+          if (this.bepsiMan.xPos + 25 < this.cans[i].xPos + this.cans[i].hitW - 5 &&
+              this.bepsiMan.xPos - 25 + this.bepsiMan.width > this.cans[i].xPos +5 &&
+              this.bepsiMan.yPos + 10 < this.cans[i].yPos + this.cans[i].hitH &&
+              this.bepsiMan.height - 10 + this.bepsiMan.yPos > this.cans[i].yPos + 5) {
               
               this.cans.splice(i,1);
               i--;
               if(this.timer < this.startvalue){
-                 this.timer+= 75;
+                 this.timer+= 40;
               }
+              if(this.canProb > .02)
+                this.canProb -= .001;
               this.velocity += .05;
-          } else {
-              // no collision
           }
         }
     }

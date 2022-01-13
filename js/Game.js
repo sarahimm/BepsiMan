@@ -30,7 +30,7 @@ class Game {
         }
 
         //Construct BepsiMan and load his animation images to the object
-        this.bepsiMan = new BepsiMan((this.canvas.width * .5 - 100),this.canvas.height - 250);
+        this.bepsiMan = new BepsiMan((this.canvas.width * .5 - 100),this.canvas.height - 230);
         for(let i=4; i<11; i++){
             let $img = new Image();
             $img.onload = function(){
@@ -60,7 +60,7 @@ class Game {
 
         
         //Probability (0 to 1) that a can will appear in a given frame
-        this.canProb = .05;
+        this.canProb = .04;
         this.cans = [];
         this.cans.push(new Can(this.canvas.width,canvas.height - 80));
     }
@@ -113,8 +113,10 @@ class Game {
         //If bepsiMan is jumping, update his yPos
         if(this.bepsiMan.inAir)
             this.bepsiMan.updateHeight();
+
+        //Add new cans at random
         if(Math.random() <= this.canProb){
-            this.cans.push(new Can(this.canvas.width, Math.floor(Math.random() * (this.canvas.height - 80))));
+            this.cans.push(new Can(this.canvas.width, Math.floor(Math.random() * (this.canvas.height - 110))));
         }
         this.draw();
     }

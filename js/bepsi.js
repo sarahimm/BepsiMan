@@ -19,7 +19,7 @@ class BepsiMan {
     lowJump(){
         if(this.inAir===false) {
             this.inAir=true;
-            this.yVelocity = -40;
+            this.yVelocity = -35;
             this.curFrame=0;
         }   
     }

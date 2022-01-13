@@ -1,6 +1,6 @@
 
 class BepsiMan {
-    //Generates a can at the given position
+    //Generates a bepsiMan at the given position
     constructor(x,y) {
         this.yPos = y;
         this.yPosOrigin = y;

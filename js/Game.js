@@ -16,6 +16,10 @@ class Game {
         this.canvas.height = 550;
         this.context =  this.canvas.getContext("2d");
 
+        this.timer = 600;
+
+        
+
         //Load Background Images
         this.backgrounds = [];
         let loadedCount=0;
@@ -100,6 +104,11 @@ class Game {
             this.cans.push(new Can(this.canvas.width, Math.floor(Math.random() * (this.canvas.height - 80))));
         }
         this.draw();
+
+        --this.timer;
+        if(this.timer < 0){
+            gameOver();
+        }
     }
 }
 
@@ -108,5 +117,12 @@ var game = new Game();
 
 var start = function () {
     game.draw();
-    setInterval(game.update.bind(game), 20);
+    control = setInterval(game.update.bind(game),20);
+}
+
+var gameOver = function(){
+    //cancel control//
+    //
+    clearInterval(control);
+    game.context.fillRect(0,0,game.canvas.width,game.canvas.height);
 }

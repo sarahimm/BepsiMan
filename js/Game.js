@@ -8,14 +8,14 @@ class Game {
         //Position (px) for lefthand side of background images, relative to canvas
         this.backPos = [0,0,0];
         //Base velocity (back layer)
-        this.velocity = 5;
+        this.velocity = 3;
         //Initialize canvas and its context
         this.canvas = document.getElementById("canvas");
         this.canvas.width = window.innerWidth;
         this.canvas.height = 550;
         this.context =  this.canvas.getContext("2d");
 
-        this.startvalue = 125
+        this.startvalue = 350;
         this.timer = this.startvalue;
 
         
@@ -64,7 +64,7 @@ class Game {
 
         
         //Probability (0 to 1) that a can will appear in a given frame
-        this.canProb = .04;
+        this.canProb = .03;
         this.cans = [];
         this.cans.push(new Can(this.canvas.width,canvas.height - 80));
     }
@@ -122,8 +122,10 @@ class Game {
             //Move each can
             this.cans[i].xPos -= this.velocity * 3;
             //If can is off-screen, delete it
-            if(this.cans[i].xPos<=0)
+            if(this.cans[i].xPos<=0){
                 this.cans.splice(i, 1);
+                i--;
+            }
         }
         //If bepsiMan is jumping, update his yPos
         if(this.bepsiMan.inAir)
@@ -144,29 +146,18 @@ class Game {
 
     //checks if BepsiMan and cans collide
     checkCollide() {
-        for(var can of this.cans){
-          if (this.bepsiMan.xPos < can.xPos + can.width &&
-              this.bepsiMan.xPos + this.bepsiMan.width > can.xPos &&
-              this.bepsiMan.yPos < can.yPos + can.height &&
-              this.bepsiMan.height + this.bepsiMan.yPos > can.yPos) {
-              // collision detected!
-              console.log("Collision detected")
-          } else {
-              // no collision
-          }
-        }
-    }
-    checkCollide() {
-        for(var can of this.cans){
-          if (this.bepsiMan.xPos < can.xPos + can.width &&
-              this.bepsiMan.xPos + this.bepsiMan.width > can.xPos &&
-              this.bepsiMan.yPos < can.yPos + can.height &&
-              this.bepsiMan.height + this.bepsiMan.yPos > can.yPos) {
-              // collision detected!
-              console.log("Collision detected")
-             /* if(this.timer < this.time){
-                this.timer += this.increment; 
-              }*/
+        for(var i=0; i<this.cans.length; i++){
+          if (this.bepsiMan.xPos < this.cans[i].xPos + this.cans[i].width &&
+              this.bepsiMan.xPos + this.bepsiMan.width > this.cans[i].xPos &&
+              this.bepsiMan.yPos < this.cans[i].yPos + this.cans[i].height &&
+              this.bepsiMan.height + this.bepsiMan.yPos > this.cans[i].yPos) {
+              
+              this.cans.splice(i,1);
+              i--;
+              if(this.timer < this.startvalue){
+                 this.timer+= 75;
+              }
+              this.velocity += .05;
           } else {
               // no collision
           }

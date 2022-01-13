@@ -32,9 +32,9 @@
             position = 0;
         }
         // Set actual background position 
-            $('#background').css('background-position',position[0]*1/2);
-        $('#midground').css('background-position',position[1]*1);
-        $('#foreground').css('background-position',position[2]*2);
+        $('#background').css('background-position',position[0]*1/2);
+        $('#midground').css('midground-position',position[1]*1);
+        $('#foreground').css('foreground-position',position[2]*2);
 
         // Update the background position by the speed
         position[0] = position[0] - speed;

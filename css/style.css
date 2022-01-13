@@ -14,7 +14,7 @@ body{
     background-position: center center; 
     /*backdrop-filter: invert(39%) sepia(92%) saturate(6497%) hue-rotate(309deg) brightness(83%) contrast(90%);  */
 }
- .Title {
+.Title {
       box-sizing: border-box;
       display: flex;
       flex-direction: column;
@@ -30,11 +30,11 @@ body{
       color: #ccc;
   }
 
-  hr {
+hr {
       color: #fff;
       width: 100%;
   }
-  h1 {
+h1 {
       font-family: 'Yellowtail', cursive;
       font-size: 70px;
       font-weight:300;
@@ -42,16 +42,16 @@ body{
       padding: 0;
       color: #fff;
   }
-  h1 span {
+h1 span {
       text-shadow: 1px 2px 0px rgb(218, 58, 170);
   }
-  h2 {
+h2 {
       color: white;
   }
-  p a, li a{
+p a, li a{
       color:rgb(218, 58, 170);
   }
-  #begin {
+#begin {
       display: block;
       box-sizing: border-box;
       height: 150px;
@@ -71,16 +71,16 @@ body{
       background-position: center;
       background-repeat:no-repeat;
     }
-  #begin:hover {
+#begin:hover {
       animation: shake .25s linear 1;
   }
-  @keyframes shake {
+@keyframes shake {
       0% {transform: rotate(0)}
       25% {transform: rotate(30deg)}
       75% {transform: rotate(-30deg)}
       100% {transform: rotate(0)}
   }
-  nav .btn {
+nav .btn {
       display: inline-block;
       background-color: #fff;
       color: #222;
@@ -90,13 +90,13 @@ body{
       width: 150px;
       text-align: center;
   }
-  nav .btn:hover {
+nav .btn:hover {
     background-image: url("../img/birds-gb3206260c_1280.png"); /*background image*/
     background-size: cover;
     text-shadow: 1px 1px 0px #fff;
     box-shadow: inset 2px 3px 6px rgba(0, 101, 114, .5);
   }
-  nav .btn.curPage {
+nav .btn.curPage {
       background-color:rgb(0, 82, 114);
       background-image: url("../img/birds-gb3206260c_1280.png"); /*background image*/
       background-size: cover;
@@ -104,7 +104,7 @@ body{
       box-shadow: none;
       text-shadow: none;
   }
-  nav {
+nav {
       background-color: #fff;
       position: fixed;
       display: flex;
@@ -113,8 +113,29 @@ body{
       width: 100%;
       margin: 0;
   }
+div#background {
+    position: absolute;
+    width:3000px;
+    height:540px;
+    margin:auto;
+    background-image: url(../img/BackgroundLayer.png);
+}
+div#midground {
+    position: absolute;
+    width:3000px;
+    height:540px;
+    margin:auto;
+    background-image: url(../img/MiddleLayer.png);
+}
+div#foreground {
+    position: absolute;
+    width:3000px;
+    height:540px;
+    margin:auto;
+    background-image: url(../img/FrontLayer.png);
+}
 
-  .Page {
+.Page {
       display: block;
       margin: 60px auto;
       padding: 30px;
@@ -122,17 +143,17 @@ body{
       width: 90vw;
       max-width: 900px;
   }
-  .Page::after {
+.Page::after {
       display: block;
       content: "";
       min-height: 120px;
   }
-  .photos {
+.photos {
       display: flex;
       flex-wrap: wrap;
       justify-content:space-around;
   }
-  .photos img {
+.photos img {
       margin: 30px;
       max-height: 360px;
       max-width: 600px;

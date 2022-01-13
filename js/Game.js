@@ -130,6 +130,7 @@ class Game {
         }
     }
 
+    //checks if BepsiMan and cans collide
     checkCollide() {
         for(var can of this.cans){
           if (this.bepsiMan.xPos < can.xPos + can.width &&

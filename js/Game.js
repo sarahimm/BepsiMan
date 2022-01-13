@@ -16,7 +16,7 @@ class Game {
         this.canvas.height = 550;
         this.context =  this.canvas.getContext("2d");
 
-        this.timer = 600;
+        this.timer = 60;
 
         
 
@@ -140,8 +140,11 @@ var start = function () {
 }
 
 var gameOver = function(){
-    //cancel control//
-    //
+    //cancel control
+    //blackens screen
     clearInterval(control);
     game.context.fillRect(0,0,game.canvas.width,game.canvas.height);
+    game.context.font = 'bold 48px serif';
+    game.context.strokeStyle = 'rgb(218, 58, 170)';
+    game.context.strokeText('RAN OUT OF BEPSI',this.canvas.width/3,this.canvas.height/2);
 }

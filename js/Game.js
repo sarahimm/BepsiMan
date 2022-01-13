@@ -32,6 +32,8 @@ class Game {
         this.canvas.width = window.innerWidth;
         this.canvas.height = 550;
         this.context =  this.canvas.getContext("2d");
+        //Probability (0 to 1) that a can will appear in a given frame
+        this.canProb = .05;
         this.cans = [];
         this.cans.push(new Can(this.canvas.width,canvas.height - 80));
     }
@@ -60,8 +62,15 @@ class Game {
             if(this.backPos[i] <= -3000)
                 this.backPos[i] = 0;
         }
-        for (let can of this.cans) {
-            can.xPos -= this.velocity * 3;
+        for (let i=0; i<this.cans.length; i++) {
+            //Move each can
+            this.cans[i].xPos -= this.velocity * 3;
+            //If can is off-screen, delete it
+            if(this.cans[i].xPos<=0)
+                this.cans.splice(i, 1);
+        }
+        if(Math.random() <= this.canProb){
+            this.cans.push(new Can(this.canvas.width, Math.floor(Math.random() * (this.canvas.height - 80))));
         }
         this.draw();
     }

@@ -2,7 +2,7 @@ class Game {
     //Initializes background images and starting velocity. 
     //Calls start() when all the images have loaded.
     constructor(){
-        this.Urls = ["img/BackgroundLayer.png","img/MiddleLayer.png","img/FrontLayer.png","img/can.png"];
+        this.Urls = ["img/BackgroundLayer.png","img/MiddleLayer.png","img/FrontLayer.png","img/can.png", "img/BepsiMan2.png"];
         //Array of 3 Image objects
         this.backgrounds = [];
         let loadedCount=0;
@@ -11,7 +11,7 @@ class Game {
             $img.onload = function(){
                 loadedCount++;
                 //Only starts game if all four necessary images have loaded
-                if(loadedCount===4) start();};
+                if(loadedCount===5) start();};
             $img.src = this.Urls[i];
             this.backgrounds.push($img);
         }
@@ -20,8 +20,17 @@ class Game {
         this.canIcon.onload = function(){
             loadedCount++;
             //Only starts game if all four necessary images have loaded
-            if(loadedCount===4) start();};
+            if(loadedCount===5) start();};
         this.canIcon.src = this.Urls[3];
+        //Set this.bepsiIcon to an Image object
+        this.bepsiIcon = new Image();
+        this.bepsiIcon.onload = function(){
+            loadedCount++;
+            //Only starts game if all four necessary images have loaded
+            if(loadedCount===5) start();};
+        this.bepsiIcon.src = this.Urls[4];
+        this.BepsiMan = new BepsiMan(this.canvas.width*0.5, this.canvas.height-80);
+
         //Position (px) for lefthand side of background images, relative to canvas
         this.backPos = [0,0,0];
         //Base velocity (back layer)
@@ -33,6 +42,8 @@ class Game {
         this.context =  this.canvas.getContext("2d");
         this.cans = [];
         this.cans.push(new Can(this.canvas.width,canvas.height - 80));
+        // this.bep = [];
+        // this.bep.push(new Can(this.canvas.width,canvas.height - 80));
     }
     //Draws background, character, and all other game objects to the screen
     //(Just background for now)
@@ -47,6 +58,10 @@ class Game {
         for (let can of this.cans) {
             this.context.drawImage(this.canIcon,can.xPos,can.yPos, can.width, can.height);
         }
+        // for (let BepsiMan of this.bep) {
+            this.context.drawImage(this.bepsiIcon,this.BepsiMan.xPos, this.BepsiMan.yPos, this.bepsiIcon.width, 
+                this.bepsiIcon.height);
+        // }
     }
     //Adjusts positioning of each element according to velocity
     //(Eventually will check for and handle collisions as well)

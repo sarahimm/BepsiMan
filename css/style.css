@@ -155,3 +155,22 @@ body{
         padding: 15px;
     }
 }
+
+#canvas {
+    display: flex;
+    margin: auto;
+    height: 150%;
+    padding: 4%;
+}
+
+#controls {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin: auto;
+    padding: 10px;
+    background-color: #fff;
+    height: 30px;
+    
+    font-size:large;
+}

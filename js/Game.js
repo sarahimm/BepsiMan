@@ -129,6 +129,21 @@ class Game {
             gameOver();
         }
     }
+
+    //checks if BepsiMan and cans collide
+    checkCollide() {
+        for(var can of this.cans){
+          if (this.bepsiMan.xPos < can.xPos + can.width &&
+              this.bepsiMan.xPos + this.bepsiMan.width > can.xPos &&
+              this.bepsiMan.yPos < can.yPos + can.height &&
+              this.bepsiMan.height + this.bepsiMan.yPos > can.yPos) {
+              // collision detected!
+              console.log("Collision detected")
+          } else {
+              // no collision
+          }
+        }
+    }
 }
 
 
@@ -148,3 +163,4 @@ var gameOver = function(){
     game.context.strokeStyle = 'rgb(218, 58, 170)';
     game.context.strokeText('RAN OUT OF BEPSI',this.canvas.width/3,this.canvas.height/2);
 }
+

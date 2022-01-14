@@ -66,7 +66,7 @@ class Game {
         //Probability (0 to 1) that a can will appear in a given frame
         this.canProb = .045;
         this.cans = [];
-        this.cans.push(new Can(this.canvas.width,canvas.height - 110));
+        this.cans.push(new Can(this.canvas.width,canvas.height - 120));
     }
     //Draws background, character, and all other game objects to the screen
     //(Just background for now)

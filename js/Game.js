@@ -67,6 +67,10 @@ class Game {
         this.canProb = .045;
         this.cans = [];
         this.cans.push(new Can(this.canvas.width,canvas.height - 120));
+
+        //cans collected counter
+        // this.cansCollected = 0;
+        // this.canCollected++;
     }
     //Draws background, character, and all other game objects to the screen
     //(Just background for now)
@@ -181,6 +185,7 @@ var gameOver = function(){
     game.context.fillRect(0,0,game.canvas.width,game.canvas.height);
     game.context.font = 'bold 48px serif';
     game.context.strokeStyle = 'rgb(218, 58, 170)';
+    //game.context.strokeText('Cans Collected:',this.canvas.width/15,this.canvas.height/2);
     game.context.strokeText('RAN OUT OF BEPSI',this.canvas.width/3+20,this.canvas.height/2);
     document.getElementById("restart").style.display = "block";
 }

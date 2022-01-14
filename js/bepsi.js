@@ -1,4 +1,3 @@
-
 class BepsiMan {
     //Generates a bepsiMan at the given position
     constructor(x,y) {

@@ -65,6 +65,7 @@ class Game {
         
         //Probability (0 to 1) that a can will appear in a given frame
         this.canProb = .045;
+        this.cansCollected = 0;
         this.cans = [];
         this.cans.push(new Can(this.canvas.width,canvas.height - 120));
 
@@ -163,6 +164,7 @@ class Game {
               if(this.canProb > .02)
                 this.canProb -= .001;
               this.velocity += .05;
+              this.cansCollected++;
           }
         }
     }
@@ -183,8 +185,9 @@ var gameOver = function(){
     game.context.fillStyle = "black";
     game.context.fillRect(0,0,game.canvas.width,game.canvas.height);
     game.context.font = 'bold 48px serif';
-    game.context.strokeStyle = 'rgb(218, 58, 170)';
-    game.context.strokeText('RAN OUT OF BEPSI',this.canvas.width/3+20,this.canvas.height/2);
+    game.context.strokeStyle = 'rgb(218, 58, 170)'; 
+    game.context.strokeText('Cans Collected: ' + game.cansCollected,this.canvas.width/2 - 170,this.canvas.height/2 -80);
+    game.context.strokeText('RAN OUT OF BEPSI',this.canvas.width/2 - 225,this.canvas.height/2);
     document.getElementById("restart").style.display = "block";
 }
 

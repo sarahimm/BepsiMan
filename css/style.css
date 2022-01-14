@@ -3,6 +3,8 @@ html, body {
     padding: 0;
     margin: 0;
 }
+/*main body*/
+/*pink background, fills whole screen, can image tiled over the top*/
 body{
     height: 100%;
     width: 100%;
@@ -13,7 +15,7 @@ body{
     background-repeat: repeat;
     background-position: center center; 
     /*backdrop-filter: invert(39%) sepia(92%) saturate(6497%) hue-rotate(309deg) brightness(83%) contrast(90%);  */
-}
+}/**/
  .Title {
       box-sizing: border-box;
       display: flex;

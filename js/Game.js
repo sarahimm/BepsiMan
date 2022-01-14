@@ -34,7 +34,7 @@ class Game {
         }
 
         //Construct BepsiMan and load his animation images to the object
-        this.bepsiMan = new BepsiMan((this.canvas.width * .5 - 100),this.canvas.height - 230);
+        this.bepsiMan = new BepsiMan((this.canvas.width * .33 - 100),this.canvas.height - 230);
         for(let i=4; i<11; i++){
             let $img = new Image();
             $img.onload = function(){
@@ -182,6 +182,6 @@ var gameOver = function(){
     game.context.font = 'bold 48px serif';
     game.context.strokeStyle = 'rgb(218, 58, 170)';
     game.context.strokeText('RAN OUT OF BEPSI',this.canvas.width/3+20,this.canvas.height/2);
-    document.getElementById("begin").style.display = "block";
+    document.getElementById("restart").style.display = "block";
 }
 

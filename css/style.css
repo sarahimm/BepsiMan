@@ -176,3 +176,20 @@ body{
     
     font-size:large;
 }
+
+#restart {
+    display: block;
+    position: relative;
+    text-align: center;
+    width: 150px;
+    margin: auto;
+    margin-top: -200px;
+    background-color: #000;
+    border-radius: 5px;
+    border: 1px solid rgb(218, 58, 170);
+    color: #ccc;
+    font-size: 26px;
+    text-decoration: none;
+    
+
+}

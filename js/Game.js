@@ -8,14 +8,14 @@ class Game {
         //Position (px) for lefthand side of background images, relative to canvas
         this.backPos = [0,0,0];
         //Base velocity (back layer)
-        this.velocity = 5;
+        this.velocity = 3;
         //Initialize canvas and its context
         this.canvas = document.getElementById("canvas");
         this.canvas.width = window.innerWidth;
         this.canvas.height = 550;
         this.context =  this.canvas.getContext("2d");
 
-        this.startvalue = 125
+        this.startvalue = 350;
         this.timer = this.startvalue;
 
         
@@ -34,7 +34,7 @@ class Game {
         }
 
         //Construct BepsiMan and load his animation images to the object
-        this.bepsiMan = new BepsiMan((this.canvas.width * .5 - 100),this.canvas.height - 230);
+        this.bepsiMan = new BepsiMan((this.canvas.width * .33 - 100),this.canvas.height - 230);
         for(let i=4; i<11; i++){
             let $img = new Image();
             $img.onload = function(){
@@ -64,9 +64,9 @@ class Game {
 
         
         //Probability (0 to 1) that a can will appear in a given frame
-        this.canProb = .04;
+        this.canProb = .045;
         this.cans = [];
-        this.cans.push(new Can(this.canvas.width,canvas.height - 80));
+        this.cans.push(new Can(this.canvas.width,canvas.height - 120));
     }
     //Draws background, character, and all other game objects to the screen
     //(Just background for now)
@@ -122,17 +122,20 @@ class Game {
             //Move each can
             this.cans[i].xPos -= this.velocity * 3;
             //If can is off-screen, delete it
-            if(this.cans[i].xPos<=0)
+            if(this.cans[i].xPos<=0){
                 this.cans.splice(i, 1);
+                i--;
+            }
         }
         //If bepsiMan is jumping, update his yPos
         if(this.bepsiMan.inAir)
             this.bepsiMan.updateHeight();
 
         //Add new cans at random
-        if(Math.random() <= this.canProb){
+        if(this.cans.length === 0 || (Math.random() <= this.canProb)){
             this.cans.push(new Can(this.canvas.width, Math.floor(Math.random() * (this.canvas.height - 110))));
         }
+        this.checkCollide();
         this.draw();
 
         --this.timer;
@@ -143,15 +146,20 @@ class Game {
 
     //checks if BepsiMan and cans collide
     checkCollide() {
-        for(var can of this.cans){
-          if (this.bepsiMan.xPos < can.xPos + can.width &&
-              this.bepsiMan.xPos + this.bepsiMan.width > can.xPos &&
-              this.bepsiMan.yPos < can.yPos + can.height &&
-              this.bepsiMan.height + this.bepsiMan.yPos > can.yPos) {
-              // collision detected!
-              console.log("Collision detected")
-          } else {
-              // no collision
+        for(var i=0; i<this.cans.length; i++){
+          if (this.bepsiMan.xPos + 25 < this.cans[i].xPos + this.cans[i].hitW - 5 &&
+              this.bepsiMan.xPos - 25 + this.bepsiMan.width > this.cans[i].xPos +5 &&
+              this.bepsiMan.yPos + 10 < this.cans[i].yPos + this.cans[i].hitH &&
+              this.bepsiMan.height - 10 + this.bepsiMan.yPos > this.cans[i].yPos + 5) {
+              
+              this.cans.splice(i,1);
+              i--;
+              if(this.timer < this.startvalue){
+                 this.timer+= 40;
+              }
+              if(this.canProb > .02)
+                this.canProb -= .001;
+              this.velocity += .05;
           }
         }
     }
@@ -174,5 +182,6 @@ var gameOver = function(){
     game.context.font = 'bold 48px serif';
     game.context.strokeStyle = 'rgb(218, 58, 170)';
     game.context.strokeText('RAN OUT OF BEPSI',this.canvas.width/3+20,this.canvas.height/2);
+    document.getElementById("restart").style.display = "block";
 }
 

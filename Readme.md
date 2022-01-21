@@ -14,12 +14,77 @@ The goal of this third group project is to finish your side-scrolling JavaScript
 ### Grade Break Down
 | Part                                     |     | Points  |
 |------------------------------------------|-----|---------|
-| visual layout and visual design          |     |  25 pts |
-| Technical Design                         |     |  25 pts |
-| Game works                               |     |  25 pts |
-| Presentation                             |     |  25 pts |
-| TOTAL                                    |     | 100 pts |
+| visual layout and visual design          |  25 |  25 pts |
+| Technical Design                         |  21 |  25 pts |
+| Game works                               |  25 |  25 pts |
+| Presentation                             |  25 |  25 pts |
+| TOTAL                                    |  96 | 100 pts |
 
+* Visual Layout and design
+    + looks really good, like bepsi man is actually running!
+    + Cool that he turns into a can when he jumps
+    + the heath bar thing is also awesome
+    + controls were a bit hard to notice at first
+* Technical Design
+    + design looks good, make sure you check what .md files look like on whitgit when you upload them, some formatting is off
+    + nice flow chart
+    + good comments, but no headers in files
+* Game works good!
+##### Class Critiques
+* Artistic Design: Layout easy to understand and focuses user attention appropriately. (1 - needs improvement to 5 - Excellent)
+    + 4, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5
+* Artistic Design: Effective writing (1 - needs improvement to 5 - Excellent)
+    + 3, 3, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5, 5
+* Artistic Design: Fonts/Typefaces easy to read (1 - needs improvement to 5 - Excellent)
+    + 2, 2, 3, 3, 4, 4, 4, 5, 5, 5, 5, 5, 5
+* Artistic Design: Good use of complementary colors (1 - needs improvement to 5 - Excellent)
+    + 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5
+* Artistic Design: Effective images (1 - needs improvement to 5 - Excellent)
+    + 3, 4, 4, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5
+* Artistic Design: Effective images (1 - needs improvement to 5 - Excellent)2
+    + 3, 4, 4, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5
+* Artistic Design: Good navigation elements (1 - needs improvement to 5 - Excellent)
+    + 3, 4, 4, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5
+* Artistic Design: Mobile friendly design (1 - needs improvement to 5 - Excellent)
+    + 2, 3, 3, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5
+* Please give any additional feedback to the group from a artistic design perspective
+    + awesome work getting the running animation there! its super cool and adds another element of fun to the game!
+    + Your usage of colors and theme is really good and consistent. Your assets are also very well made. I do not really have much feedback on this. 
+    + my group, am biased
+    + I love the graphics and everything!!! 
+* Please rank how well the website establishes a "brand" or "identity". (1- weak to 5 - excellent)
+    + 4, 4, 4, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5
+* Based on the design, what age group / demographic do you think the group is targeting?
+    + teen to young adult
+    + all ages
+    + young people who like funny memes and computer games!
+    + Teenagers/Millenials
+    + 11-30
+    + 10;18
+    + Anyone who knows the original Pepsi man game
+    + Teens/young adults
+    + teenagers
+    + 12-19
+    + pepsi man
+    + 10-20
+* Do you have any additional suggestions for the group regarding brand, identity, copyright, or other suggestions from a business and marketing perspective?
+    + bepsi is a very funny identity, and you establish it well!
+    + I do wonder if you would run into issues with Pepsi if you wanted to monetize the game. 
+    + Idk if Pepsi Man is copyright or not
+    + strong identity, my group, am biased
+    + Make sure to still give reference to pepsi trademarks (it looks really similar)
+* HTML and CSS is well formatted with good use of indents and comments. 1 - weak to 5 - excellent
+    + 3, 4, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5
+* HTML uses lowercase except where required. 1 - weak to 5 - excellent
+    + 4, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5, 5
+* HTML passes the validator on https://validator.w3.org/nu/. 1 - weak to 5 - excellent
+    + 3, 4, 4, 4, 5, 5, 5, 5, 5, 5
+* HTML uses alt attribute fallbacks for multimedia and images. 1 - weak to 5 - excellent
+    + 3, 4, 4, 4, 4, 5, 5, 5, 5, 5
+* Any other HTML or CSS suggestions for this group?
+    + comments more! code is good, would be easier to understand with comments
+    + HTML and CSS look clean and well formatted. 
+    + no suggestions, my group, am biased
 ### Evaluation Criteria
 * 25 pts Good visual layout and visual design (5 pts will be class critique) (use of color, negative space, relationship between visual elements, etc.)
 * 25 pts Good Technical Design:  Good repository commit comments, Good documentation in the JavaScript code and header comments in ALL the js/html files, References to any resources used from the web, Good design of JavaScript code and objects, included both Design.md and ControllerDesign.png as described below in the directions, Good  use of JavaScript functions, works on different platforms (mobile, ipad, desktop)
